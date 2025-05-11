@@ -1,0 +1,34 @@
+.app-footer {
+    background-color: #222;
+    color: #eee;
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: auto; /* Push footer to bottom */
+    font-size: 0.9rem;
+
+    /* Animation setup */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Apply animation when footer is visible */
+.app-footer.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footer-content p {
+    margin: 0;
+}
+
+/* Optional: Add subtle hover effect to links if any */
+.app-footer a {
+    color: #eee;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.app-footer a:hover {
+    color: #fff;
+}

@@ -1,0 +1,266 @@
+.product-detail-page {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+}
+
+.product-detail-page.loading,
+.product-detail-page.not-found {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 4rem;
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+/* Main Content Layout */
+.product-detail-content {
+    display: flex;
+    gap: 3rem; /* Space between image and info */
+}
+
+/* Image Gallery/Side */
+.product-image-gallery {
+    flex: 1; /* Adjust flex basis as needed */
+    max-width: 500px; /* Limit image width */
+}
+
+.main-product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+/* Product Info Side */
+.product-info {
+    flex: 1; /* Adjust flex basis */
+}
+
+.product-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: #333;
+    line-height: 1.2;
+}
+
+.product-price-detail {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #e67e22; /* Price color */
+    margin-bottom: 1.5rem;
+}
+
+.product-description-detail {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+/* Size Selector Styles */
+.size-selector {
+    margin-bottom: 1.5rem;
+}
+
+.size-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.size-selector select {
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    min-width: 150px; /* Give it some width */
+    cursor: pointer;
+}
+
+.size-selector select:focus {
+    outline: none;
+    border-color: #888;
+    box-shadow: 0 0 0 2px rgba(136, 136, 136, 0.2);
+}
+
+/* Actions Area */
+.product-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quantity-selector label {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.quantity-selector input {
+    width: 60px;
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1rem;
+}
+
+/* Specific button style for detail page */
+.add-to-cart-btn-detail {
+    padding: 0.8rem 1.5rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.add-to-cart-btn-detail:hover:not(.added) {
+    background-color: #555;
+}
+
+.add-to-cart-btn-detail.added {
+    background-color: #4CAF50; /* Green */
+    cursor: default;
+    opacity: 0.9;
+}
+
+.product-category {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.product-category a {
+    color: #555;
+    text-decoration: underline;
+}
+
+/* Reviews Section Styles */
+.reviews-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.reviews-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #444;
+}
+
+.review-item {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 1.5rem 0;
+}
+
+.review-item:last-child {
+    border-bottom: none;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.review-author {
+    font-weight: bold;
+    color: #333;
+}
+
+.review-rating {
+    color: #f39c12; /* Gold color for stars */
+    font-size: 1.1rem;
+}
+
+.review-date {
+    font-size: 0.85rem;
+    color: #888;
+    margin-left: auto; /* Push date to the right */
+}
+
+.review-verified {
+    font-size: 0.8rem;
+    color: #27ae60; /* Green */
+    background-color: #eafaf1;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-weight: 500;
+    margin-left: 0.5rem;
+}
+
+.review-text {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .product-detail-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .product-image-gallery,
+    .product-info {
+        flex: none; /* Reset flex */
+        max-width: 100%;
+    }
+
+    .product-title {
+        font-size: 2rem;
+    }
+
+    .product-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .add-to-cart-btn-detail {
+        width: 100%;
+        text-align: center;
+    }
+}

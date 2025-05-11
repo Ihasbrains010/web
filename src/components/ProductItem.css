@@ -1,0 +1,84 @@
+.product-item {
+    border: 1px solid #eee;
+    padding: 1rem;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures button stays at bottom */
+    height: 100%; /* Make items fill grid cell height */
+    /* Animation */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+
+.product-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.product-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-container { /* Add a container for overflow hidden */
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.product-image {
+    display: block; /* Remove extra space below image */
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4; /* Maintain image aspect ratio */
+    object-fit: cover;
+    transition: transform 0.4s ease; /* Add transition for smooth zoom */
+}
+
+.product-item:hover .product-image {
+    transform: scale(1.05); /* Scale image slightly on hover */
+}
+
+.product-name {
+    font-size: 1.1rem;
+    font-weight: 500; /* Use Roboto medium */
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 0.5rem;
+    flex-grow: 1; /* Allow name to take space if needed */
+}
+
+.product-price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.add-to-cart-btn {
+    background-color: #222;
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    align-self: center; /* Center button within the item */
+    width: 80%; /* Make button slightly less wide */
+    border-radius: 3px; /* Slightly rounded corners */
+    letter-spacing: 0.5px; /* Add slight letter spacing */
+}
+
+.add-to-cart-btn.added {
+    background-color: #4CAF50; /* Green background for success */
+    color: white;
+    cursor: default; /* Indicate it's temporarily disabled */
+}
+
+.add-to-cart-btn:hover:not(.added) { /* Ensure hover effect doesn't apply when added */
+    background-color: #555;
+    transform: translateY(-2px);
+}

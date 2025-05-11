@@ -1,0 +1,65 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ffffff; /* Clean white background */
+    border-bottom: 1px solid #eaeaea;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #222;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif; /* Elegant serif font for brand */
+}
+
+.app-header nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.app-header nav ul li {
+    margin-left: 2rem;
+}
+
+.app-header nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 1rem;
+    padding-bottom: 5px; /* Space for potential underline effect */
+    transition: color 0.3s ease, border-bottom-color 0.3s ease; /* Specify border-bottom-color */
+    border-bottom: 2px solid transparent; /* For hover effect */
+}
+
+.app-header nav ul li a:hover,
+.app-header nav ul li a.active { /* Use NavLink active class */
+    color: #000;
+    border-bottom-color: #000; /* Change color only */
+}
+
+/* Styling for the cart link specifically */
+.cart-link {
+    position: relative; /* Needed for positioning the badge */
+    display: inline-block; /* Ensure proper spacing */
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px; /* Position above the link */
+    right: -15px; /* Position to the right */
+    background-color: #e63946; /* A noticeable color */
+    color: white;
+    border-radius: 50%; /* Make it circular */
+    padding: 2px 6px; /* Adjust padding for size */
+    font-size: 0.75rem; /* Smaller font size */
+    font-weight: bold;
+    line-height: 1; /* Ensure text fits */
+    min-width: 18px; /* Minimum width */
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}

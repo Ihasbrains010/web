@@ -1,0 +1,32 @@
+.featured-products-section {
+    padding: 3rem 1rem; /* Add vertical and horizontal padding */
+    text-align: center;
+    background-color: #fdfdfd; /* Slightly off-white background */
+}
+
+.featured-products-section.is-visible .section-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: normal;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 2.5rem;
+    color: #333;
+    position: relative; /* For potential pseudo-element underline */
+
+    /* Animation setup */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.featured-products-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1000px; /* Limit width of the grid */
+    margin: 0 auto; /* Center the grid */
+}

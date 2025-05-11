@@ -1,0 +1,92 @@
+.hero-section {
+    position: relative; /* For positioning content inside */
+    height: 500px; /* Adjust height as needed */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+    text-align: center;
+    color: white; /* Default text color, assuming dark background */
+}
+
+/* Overlay for better text readability on busy images */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative; /* Ensure content is above the overlay */
+    z-index: 2;
+    padding: 2rem;
+    max-width: 700px;
+}
+
+.hero-headline {
+    font-size: 3.5rem; /* Large, impactful headline */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #ffffff; /* Ensure headline is white */
+    line-height: 1.2;
+    /* Animation */
+    opacity: 0; /* Start hidden */
+    animation: fadeInUp 1s ease 0.2s forwards; /* Apply animation, slight delay */
+}
+
+.hero-subheadline {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #f0f0f0; /* Slightly off-white */
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    /* Animation */
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.4s forwards; /* Delay slightly more */
+}
+
+.hero-cta-button {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    background-color: #fff; /* White button */
+    color: #222; /* Dark text */
+    border: 1px solid #fff;
+    text-decoration: none;
+    border-radius: 3px; /* Match other buttons */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 500; /* Medium weight */
+    letter-spacing: 0.5px; /* Match other buttons */
+    /* Animation */
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.6s forwards; /* Delay even more */
+}
+
+.hero-cta-button:hover {
+    background-color: transparent; /* Transparent background on hover */
+    color: #fff; /* White text on hover */
+    text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 400px; /* Smaller height on mobile */
+    }
+
+    .hero-headline {
+        font-size: 2.5rem;
+    }
+
+    .hero-subheadline {
+        font-size: 1rem;
+    }
+}

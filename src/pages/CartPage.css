@@ -1,0 +1,255 @@
+.cart-page h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: normal;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.empty-cart p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.browse-products-link {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #222;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.browse-products-link:hover {
+    background-color: #555;
+    text-decoration: none;
+}
+
+.cart-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Items list takes more space than summary */
+    gap: 2rem;
+    align-items: start; /* Align items to the top */
+}
+
+.cart-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cart-item {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem 0;
+    gap: 1.5rem; /* Spacing between elements */
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-image {
+    width: 100px;
+    height: 133px; /* Maintain aspect ratio */
+    object-fit: cover;
+    border: 1px solid #eee;
+}
+
+.cart-item-details {
+    flex-grow: 1; /* Takes up available space */
+    margin-right: 1rem; /* Add space before quantity */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.cart-item-name {
+    font-size: 1.1rem;
+    font-weight: 500; /* Roboto medium */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+.cart-item-price {
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 130px; /* Slightly wider */
+    justify-content: center; /* Center quantity input */
+}
+
+.quantity-input {
+    width: 50px;
+    padding: 0.3rem;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.cart-item-total {
+    width: 100px;
+    text-align: right;
+    font-weight: 500;
+    font-size: 1.1rem; /* Make total price slightly larger */
+    color: #333;
+}
+
+.remove-item-btn {
+    background-color: transparent;
+    border: none;
+    color: #cc0000; /* Red color for removal */
+    cursor: pointer;
+    font-size: 1.1rem; /* Make icon/text slightly larger */
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+    margin-left: 1rem; /* Space before remove button */
+    line-height: 1; /* Ensure button aligns well */
+}
+
+.remove-item-btn:hover {
+    text-decoration: underline;
+}
+
+.cart-summary {
+    border-top: 2px solid #ddd; /* Make separator more prominent */
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+    background-color: #f9f9f9; /* Light background for summary box */
+    padding: 1.5rem;
+    border-radius: 4px;
+    width: 300px; /* Fixed width for the summary box */
+    margin-left: auto; /* Push summary box to the right */
+    text-align: right;
+}
+
+.cart-summary h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; /* Slightly smaller summary title */
+    margin: 0 0 1.5rem 0; /* Adjusted margin */
+    text-align: left; /* Align title left */
+    color: #333;
+}
+
+.cart-summary p {
+    font-size: 1rem; /* Standardize font size */
+    margin-bottom: 1rem; /* Consistent spacing */
+    color: #555;
+    display: flex; /* Use flex for label/value alignment */
+    justify-content: space-between; /* Space out label and value */
+}
+
+.cart-summary p span:first-child { /* Style the label part */
+    color: #666;
+}
+
+.cart-summary p span:last-child { /* Style the value part */
+    font-weight: 500;
+    color: #333;
+}
+
+/* Style the final total price differently */
+.cart-summary p.total-price span:last-child {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+.checkout-btn {
+    display: block; /* Make button full width of container */
+    width: 100%;
+    padding: 0.9rem 1.5rem; /* Adjusted padding */
+    background-color: #28a745; /* Green for checkout */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+.checkout-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.cart-empty {
+    text-align: center;
+    padding: 4rem 1rem;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.cart-empty p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.continue-shopping-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.continue-shopping-btn:hover {
+    background-color: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cart-content {
+        grid-template-columns: 1fr; /* Stack items and summary on smaller screens */
+    }
+
+    .cart-summary {
+        position: static; /* Remove sticky positioning */
+        margin-top: 2rem;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .cart-item-image {
+        width: 150px; /* Allow image to be a bit larger */
+        height: 200px;
+        align-self: center;
+    }
+
+    .remove-item-btn {
+        align-self: flex-end; /* Move button to the right */
+        margin-top: 1rem;
+    }
+}
