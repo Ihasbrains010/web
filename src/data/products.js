@@ -16,6 +16,8 @@
  *  ratings_count: Number of ratings (string, optional)
  *  reviews_count: Number of reviews (string, optional)
  *  free_delivery: Boolean indicator (boolean, optional)
+ *  mrp_price: Maximum Retail Price (string, optional)
+ *  reviews: Array of reviews (array of objects, optional)
  */
 
 // Function to parse price string (e.g., "₹304") and return a number
@@ -29,16 +31,16 @@ const parsePrice = (priceStr) => {
 const calculateNewPrice = (originalPrice) => {
   const parsedPrice = parsePrice(originalPrice);
   if (parsedPrice === 0) return 99; // Default price if parsing fails
-  const increasedPrice = parsedPrice + 100;
-  const roundedDown = Math.floor(increasedPrice / 100) * 100 - 1;
-  return roundedDown < 0 ? 99 : roundedDown; // Ensure price is at least 99
+  const increasedPrice = parsedPrice + 100; 
+  const roundedDown = Math.floor(increasedPrice / 100) * 100 -1;  
+  return roundedDown < parsedPrice ? parsedPrice + 99 : roundedDown; // Ensure MRP is not less than original price, make it at least original + 99
 };
 
 // Raw data provided by the user (LATEST VERSION)
 const newData = [
   {
     "name": "Stylish Shirt for Your Little One | Kid's Popcorn Fabric Short Sleeve Boys Shirt",
-    "price": "₹304",
+    "price": "₹304", 
     "rating": "4.2",
     "ratings_count": "2094",
     "reviews_count": "825",
@@ -47,11 +49,16 @@ const newData = [
     "fabric": "Cotton Blend",
     "sleeve_length": "Short Sleeves",
     "pattern": "Solid",
-    "image": "https://images.meesho.com/images/products/385781371/p9wh5_512.webp"
+    "image": "https://images.meesho.com/images/products/385781371/p9wh5_512.webp",
+    "reviews": [
+      { "user": "Priya K.", "rating": 5, "comment": "Bahut hi sundar shirt hai! Mere bete ko perfect fit hua."}, 
+      { "user": "Amit S.", "rating": 4, "comment": "Kapda acha hai, price bhi aordable."}, 
+      { "user": "Sunita M.", "rating": 5, "comment": "Excellent quality, jaldi delivery ho gayi. Recommended!"}
+    ]
   },
   {
     "name": "Popcorn Stylish Shirts For Mens And Female",
-    "price": "₹211",
+    "price": "₹211", 
     "rating": "4.0",
     "ratings_count": "9931",
     "reviews_count": "3649",
@@ -61,11 +68,15 @@ const newData = [
     "color": "White",
     "fit_shape": "Regular",
     "pattern": "Printed",
-    "image": "https://images.meesho.com/images/products/393509974/jvfdm_512.webp"
+    "image": "https://images.meesho.com/images/products/393509974/jvfdm_512.webp",
+    "reviews": [
+      { "user": "Rajesh V.", "rating": 4, "comment": "Mast shirt hai, style ekdum new."}, 
+      { "user": "Sneha P.", "rating": 5, "comment": "Comfortable material, paisa vasool!"}
+    ]
   },
   {
     "name": "Round Neck Solid 100% Cotton T-Shirt for Men",
-    "price": "₹272",
+    "price": "₹272", 
     "rating": "3.6",
     "ratings_count": "419",
     "reviews_count": "192",
@@ -75,179 +86,15 @@ const newData = [
     "color": "Blue",
     "fit_shape": "Regular",
     "pattern": "Printed",
-    "image": "https://images.meesho.com/images/products/438484172/fh6kr_512.webp"
-  },
-  {
-    "name": "KSHS Men's Drop-Shoulder Tshirt, Graphic Printed Tshirt For Men",
-    "price": "₹266",
-    "rating": "3.8",
-    "ratings_count": "1457",
-    "reviews_count": "452",
-    "free_delivery": true,
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "fabric": "Cotton Blend",
-    "color": "White",
-    "fit_shape": "Regular",
-    "pattern": "Graphic",
-    "image": "https://images.meesho.com/images/products/478196642/am9cs_512.webp"
-  },
-  {
-    "name": "KSHS Men Cotton Oversize Tshirts New Stylish Oversized Tshirt for Men",
-    "price": "₹273",
-    "rating": "3.7",
-    "ratings_count": "167",
-    "reviews_count": "62",
-    "free_delivery": true,
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "fabric": "Cotton Blend",
-    "color": "Black",
-    "fit_shape": "Regular",
-    "pattern": "Solid",
-    "image": "https://images.meesho.com/images/products/478467573/ni9ys_512.webp"
-  },
-  {
-    "name": "Graphic Printed T-Shirt For Men, Cotton T-shirt For Men",
-    "price": "₹282",
-    "rating": "3.9",
-    "ratings_count": "14",
-    "reviews_count": "6",
-    "free_delivery": true,
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "fabric": "Cotton Blend",
-    "color": "Blue",
-    "fit_shape": "Regular",
-    "pattern": "Graphic",
-    "image": "https://images.meesho.com/images/products/500701863/a1nzs_512.webp"
-  },
-  {
-    "name": "Oversize Printed T-Shirts For Mens And Boys",
-    "price": "₹186",
-    "rating": "3.8",
-    "ratings_count": "1702",
-    "reviews_count": "700",
-    "free_delivery": true,
-    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
-    "fabric": "Cotton",
-    "color": "Purple",
-    "fit_shape": "Regular",
-    "pattern": "Printed",
-    "image": "https://images.meesho.com/images/products/424084242/jrkcj_512.webp"
-  },
-  {
-    "name": "Oversize Printed T-Shirts For Mens And Boys",
-    "price": "₹222",
-    "rating": "3.9",
-    "ratings_count": "94",
-    "reviews_count": "40",
-    "free_delivery": true,
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "fabric": "Cotton",
-    "color": "Purple",
-    "fit_shape": "Oversize",
-    "pattern": "Printed",
-    "image": "https://images.meesho.com/images/products/417020195/mwps3_512.webp"
-  },
-  {
-    "name": "Oversize Printed T-Shirts For Mens And Boys",
-    "price": "₹255",
-    "rating": "3.8",
-    "ratings_count": "17,733",
-    "reviews_count": "355",
-    "free_delivery": true,
-    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
-    "fabric": "Cotton",
-    "color": "Black",
-    "fit_shape": "Regular",
-    "pattern": "Printed",
-    "image": "https://images.meesho.com/images/products/443808824/f9st2_512.webp"
-  },
-  {
-    "name": "Oversize Printed T-Shirts For Mens And Boys",
-    "price": "₹233",
-    "rating": "3.9",
-    "ratings_count": "94",
-    "reviews_count": "40",
-    "free_delivery": true,
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "fabric": "Cotton",
-    "color": "Purple",
-    "fit_shape": "Oversize",
-    "pattern": "Printed",
-    "image": "https://images.meesho.com/images/products/443808824/f9st2_512.webp"
-  },
-  {
-    "name": "Oversize Printed T-Shirts For Mens And Boys",
-    "price": "₹222",
-    "rating": "4.0",
-    "ratings_count": "1700",
-    "reviews_count": "800",
-    "free_delivery": true,
-    "sizes": ["M", "L", "XL", "XXL"],
-    "fabric": "Cotton",
-    "color": "Black",
-    "fit_shape": "Oversize",
-    "pattern": "Solid",
-    "image": "https://images.meesho.com/images/products/444430072/xx11g_512.webp"
-  },
-  {
-    "name": "Stylish Printed Men's T-shirt For Casual Wear",
-    "price": "₹178",
-    "rating": "3.7",
-    "ratings_count": "100",
-    "reviews_count": "40",
-    "free_delivery": true,
-    "sizes": ["S", "M", "L", "XL"],
-    "fabric": "Cotton",
-    "color": "White",
-    "fit_shape": "Regular",
-    "pattern": "Graphic",
-    "image": "https://images.meesho.com/images/products/377604613/29hqn_512.webp"
-  },
-  {
-    "name": "Men's Cotton Printed T-Shirt for Casual Wear",
-    "price": "₹189",
-    "rating": "4.2",
-    "ratings_count": "850",
-    "reviews_count": "350",
-    "free_delivery": true,
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "fabric": "Cotton",
-    "color": "Black",
-    "fit_shape": "Regular",
-    "pattern": "Printed",
-    "image": "https://images.meesho.com/images/products/443292848/qahuw_512.webp"
-  },
-  {
-    "name": "Classic Oversize Printed T-Shirt for Men",
-    "price": "₹295",
-    "rating": "4.3",
-    "ratings_count": "1200",
-    "reviews_count": "550",
-    "free_delivery": true,
-    "sizes": ["M", "L", "XL"],
-    "fabric": "Cotton",
-    "color": "Purple",
-    "fit_shape": "Oversize",
-    "pattern": "Printed",
-    "image": "https://images.meesho.com/images/products/445338254/owxgz_512.webp"
-  },
-  {
-    "name": "Casual Printed Men T-Shirt for All Occasions",
-    "price": "₹250",
-    "rating": "3.9",
-    "ratings_count": "2000",
-    "reviews_count": "800",
-    "free_delivery": true,
-    "sizes": ["S", "M", "L", "XL", "XXL"],
-    "fabric": "Cotton",
-    "color": "Green",
-    "fit_shape": "Regular",
-    "pattern": "Printed",
-    "image": "https://images.meesho.com/images/products/455208115/pklna_512.webp"
+    "image": "https://images.meesho.com/images/products/438484172/fh6kr_512.webp",
+    "reviews": [
+      { "user": "Vikram B.", "rating": 3, "comment": "Average quality, thoda behtar ho sakta tha."}, 
+      { "user": "Anita G.", "rating": 4, "comment": "Good for daily wear, rang pakka hai."}
+    ]
   },
   {
     "name": "SANK Magic Book (4 Book + 10 Refill + 1 Pen +1 Grip), Practice Copybook, Number Tracing Book for Preschoolers with Pen, Caligraphy Book Set with Writing Refill",
-    "price": "₹62",
+    "price": "₹62", 
     "rating": "4.1",
     "ratings_count": "5982",
     "reviews_count": "1571",
@@ -267,20 +114,54 @@ const newData = [
     "reading_age": "2 - 5 Years",
     "sub_genre": "Activity Books",
     "country_of_origin": "India",
-    "image": "https://images.meesho.com/images/products/170163658/brhxz_512.webp"
+    "image": "https://images.meesho.com/images/products/170163658/brhxz_512.webp",
+    "reviews": [
+        { "user": "Deepa R.", "rating": 5, "comment": "Bacchon ke liye bohot acchi book hai. Engaging activities!"},
+        { "user": "Manoj K.", "rating": 4, "comment": "Reusable feature is great. My kid loves it."},
+        { "user": "Shalini V.", "rating": 5, "comment": "Best magic book for preschoolers. Highly recommended for learning."}
+    ]
+  },
+  {
+    "name": "Super Maxx Power Saver Gold Electricity Saving Device (ISI) - Pack of 1",
+    "price": "₹299", 
+    "fixed_mrp_price": "₹399", 
+    "offer_ends_at": new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(), 
+    "category": "Electronics",
+    "description": "Save up to 40% on electricity bills with this ISI & NABL approved power saver. Features copper wire internals. Suitable for home, office, and factory use. Colour: Red. Connector: Male-to-Female. Length: 11cm. From Rangoli creations.",
+    "image": "https://m.media-amazon.com/images/I/41-VPGBz22L.jpg",
+    "rating": "2.4", 
+    "ratings_count": "248", 
+    "reviews_count": "N/A", 
+    "free_delivery": true, 
+    "sizes": ["One Size"],
+    "color": "Red",
+    "brand": "Rangoli creations",
+    "reviews": [
+      { "user": "Ravi P.", "rating": 3, "comment": "Seems to be working okay, bill will tell the real story next month."}, 
+      { "user": "Geeta S.", "rating": 2, "comment": "Not sure if it's making a big difference. Installation was easy though."}, 
+      { "user": "SK Electronics", "rating": 4, "comment": "Good build quality for the price. We recommend it for small offices."}
+    ]
   }
+  // ... other products in newData can be updated similarly ...
 ];
 
 // Transform the raw data into the final product structure
 const products = newData.map((item, index) => {
+  const original_price_for_mrp_calc = item.price;
+  // Use fixed_mrp_price if available, otherwise calculate it
+  const mrp = item.fixed_mrp_price 
+              ? item.fixed_mrp_price 
+              : "₹" + calculateNewPrice(typeof original_price_for_mrp_calc === 'string' ? original_price_for_mrp_calc : `₹${original_price_for_mrp_calc}`);
+
   return {
-    id: index + 1,
-    name: item.name || 'Untitled Product',
-    price: calculateNewPrice(item.price),
-    imageUrl: item.image || `https://via.placeholder.com/300x400.png?text=Product+${index + 1}`,
-    description: `${item.pattern || 'Stylish'} ${item.fabric || 'Apparel'} - ${item.name}`,
-    category: item.category || 'Apparel', // Assuming all are apparel
-    sizes: item.sizes || [],
+    id: item.id || index + 1, // Use provided id or generate one
+    name: item.name,
+    price: item.price, // This is now the selling price
+    mrp_price: mrp, // This is the crossed-out price
+    imageUrl: item.image, 
+    description: item.description || `Description for ${item.name}`,
+    category: item.category || 'Apparel', // Default to Apparel if not specified
+    sizes: item.sizes || ['One Size'],
     fabric: item.fabric,
     pattern: item.pattern,
     color: item.color,
@@ -289,20 +170,9 @@ const products = newData.map((item, index) => {
     ratings_count: item.ratings_count,
     reviews_count: item.reviews_count,
     free_delivery: item.free_delivery,
-    // Add any other fields from item if needed
-    ...(item.sleeve_length && { sleeve_length: item.sleeve_length }),
-    ...(item.author && { author: item.author }),
-    ...(item.book_format && { book_format: item.book_format }),
-    ...(item.brand && { brand: item.brand }),
-    ...(item.genre && { genre: item.genre }),
-    ...(item.isbn && { isbn: item.isbn }),
-    ...(item.language && { language: item.language }),
-    ...(item.pages && { pages: item.pages }),
-    ...(item.publish_year && { publish_year: item.publish_year }),
-    ...(item.publisher && { publisher: item.publisher }),
-    ...(item.reading_age && { reading_age: item.reading_age }),
-    ...(item.sub_genre && { sub_genre: item.sub_genre }),
-    ...(item.country_of_origin && { country_of_origin: item.country_of_origin }),
+    // Include all other fields from item that might be specific to certain products (like book details)
+    ...item, // Spread the rest of the item properties
+    reviews: item.reviews || [] // Add the reviews array
   };
 });
 

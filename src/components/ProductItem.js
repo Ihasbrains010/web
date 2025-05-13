@@ -2,6 +2,7 @@ import React, { useState } from 'react'; // Import useState
 import { useCart } from '../context/CartContext'; // Import the useCart hook
 import './ProductItem.css'; // Styles for this component
 import { useInView } from 'react-intersection-observer'; // Import the hook
+import CountdownTimer from './CountdownTimer'; // Import the CountdownTimer component
 
 function ProductItem({ product }) {
   const { addToCart } = useCart(); // Get the addToCart function from context
@@ -24,11 +25,18 @@ function ProductItem({ product }) {
     console.log(`${product.name} added to cart`); // Simple console log for now
   };
 
-  // Format price nicely
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(product.price);
+  // Prices are already strings like "₹304"
+  const sellingPrice = product.price;
+  const mrpPrice = product.mrp_price;
+
+  let discountPercentage = 0;
+  if (mrpPrice && sellingPrice) {
+    const mrp = parseFloat(mrpPrice.replace(/[^\d.-]/g, ''));
+    const selling = parseFloat(sellingPrice.replace(/[^\d.-]/g, ''));
+    if (mrp > selling) {
+      discountPercentage = Math.round(((mrp - selling) / mrp) * 100);
+    }
+  }
 
   return (
     // Attach ref and conditionally add 'is-visible' class
@@ -37,8 +45,18 @@ function ProductItem({ product }) {
         <img src={product.imageUrl} alt={product.name} className="product-image" />
       </div>
       <h3 className="product-name">{product.name}</h3>
+      <div className="product-price-container">
+        <span className="selling-price">{sellingPrice}</span>
+        {mrpPrice && sellingPrice && parseFloat(mrpPrice.replace(/[^\d.-]/g, '')) > parseFloat(sellingPrice.replace(/[^\d.-]/g, '')) && (
+          <span className="mrp-price">{mrpPrice}</span>
+        )}
+        {discountPercentage > 0 && (
+          <span className="discount-percentage">({discountPercentage}% off)</span>
+        )}
+      </div>
+      {/* Display CountdownTimer if offer_ends_at is present */}
+      {product.offer_ends_at && <CountdownTimer targetDate={product.offer_ends_at} />}
       {/* <p className="product-description">{product.description}</p> */}
-      <p className="product-price">{formattedPrice}</p>
       {/* Conditionally change button text and add class */}
       <button
         onClick={handleAddToCart}

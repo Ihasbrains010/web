@@ -1,0 +1,45 @@
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  align-items: baseline; /* Align text and numbers nicely */
+  font-size: 0.9em;
+  color: #c0392b; /* A noticeable color, like a warm red */
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 5px 10px;
+  background-color: #fdf2e9; /* Light background to make it pop slightly */
+  border-radius: 4px;
+  border: 1px solid #fadbd8; /* Border matching the theme */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.countdown-timer .offer-ends-text,
+.countdown-timer .offer-expired-text {
+  margin-right: 8px;
+  color: #555; /* More subtle color for the label text */
+  font-weight: normal;
+}
+
+.countdown-timer .timer-segment {
+  margin: 0 3px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  background-color: #e67e22; /* A contrasting background for numbers */
+  color: white;
+}
+
+.countdown-timer .timer-segment .timer-label {
+  font-size: 0.7em;
+  margin-left: 2px;
+  font-weight: normal;
+  color: #fdebd0; /* Lighter color for labels within segments */
+}
+
+.offer-expired-text {
+  color: #7f8c8d; /* Grey out expired text */
+  font-style: italic;
+}
+
+/* Specifically for days, hours, minutes, seconds if you want to style them */
+/* These were placeholders, removing the empty rule */

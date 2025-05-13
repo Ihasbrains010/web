@@ -50,35 +50,55 @@
     flex-grow: 1; /* Allow name to take space if needed */
 }
 
-.product-price {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 1rem;
+.product-price-container {
+  display: flex;
+  align-items: baseline; /* Aligns text like MRP, selling price, discount nicely */
+  justify-content: center; /* Or flex-start if you prefer left-align */
+  gap: 8px; /* Space between price elements */
+  margin: 10px 0;
+}
+
+.mrp-price {
+  font-size: 1em;
+  color: #757575; /* Grey color for MRP */
+  text-decoration: line-through;
+}
+
+.selling-price {
+  font-size: 1.3em; /* Slightly larger */
+  color: #D32F2F; /* Red color for sale price */
+  font-weight: bold;
+}
+
+.discount-percentage {
+  font-size: 0.9em;
+  color: #388E3C; /* Green color for discount percentage */
+  font-weight: bold;
+  margin-left: 5px; /* Space from MRP */
 }
 
 .add-to-cart-btn {
-    background-color: #222;
-    color: white;
-    border: none;
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    align-self: center; /* Center button within the item */
-    width: 80%; /* Make button slightly less wide */
-    border-radius: 3px; /* Slightly rounded corners */
-    letter-spacing: 0.5px; /* Add slight letter spacing */
+  background-color: #5a3e8d; /* Main purple */
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  align-self: center; /* Center button within the item */
+  width: 80%; /* Make button slightly less wide */
+  border-radius: 3px; /* Slightly rounded corners */
+  letter-spacing: 0.5px; /* Add slight letter spacing */
 }
 
 .add-to-cart-btn.added {
-    background-color: #4CAF50; /* Green background for success */
-    color: white;
-    cursor: default; /* Indicate it's temporarily disabled */
+  background-color: #4CAF50; /* Green background for success */
+  color: white;
+  cursor: default; /* Indicate it's temporarily disabled */
 }
 
 .add-to-cart-btn:hover:not(.added) { /* Ensure hover effect doesn't apply when added */
-    background-color: #555;
-    transform: translateY(-2px);
+  background-color: #555;
+  transform: translateY(-2px);
 }

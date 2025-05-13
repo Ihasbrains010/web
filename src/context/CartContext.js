@@ -26,8 +26,21 @@ export const CartProvider = ({ children }) => {
     return size ? `${productId}-${size}` : `${productId}-default`; // Use '-default' if no size
   };
 
+  // Helper function to parse price string (e.g., "₹199") to a number (e.g., 199)
+  const parsePrice = (priceString) => {
+    if (typeof priceString === 'string') {
+      const numberString = priceString.replace(/[^\d.-]/g, '');
+      // If numberString is empty or cannot be parsed, default to 0
+      return parseFloat(numberString) || 0;
+    }
+    // If it's already a number, return it. If undefined, it returns undefined (which might need to be handled if product.price can be undefined)
+    // However, product.price from products.js should always be a string like "₹XXX"
+    return typeof priceString === 'number' ? priceString : 0; // Default to 0 if not string or number
+  };
+
   const addToCart = (product, quantity = 1, size = null) => {
     const cartItemId = generateCartItemId(product.id, size);
+    const numericalPrice = parsePrice(product.price); // Parse the price here
 
     setCartItems(prevItems => {
       const existingItemIndex = prevItems.findIndex(item => item.cartItemId === cartItemId);
@@ -39,7 +52,8 @@ export const CartProvider = ({ children }) => {
         return updatedItems;
       } else {
         // Add new item with product details, quantity, size, and cartItemId
-        return [...prevItems, { ...product, quantity, size, cartItemId }];
+        // Store the PARSED numerical price
+        return [...prevItems, { ...product, price: numericalPrice, quantity, size, cartItemId }];
       }
     });
   };
@@ -60,6 +74,7 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
 
+  // cartTotal should now work correctly as item.price in cartItems is a number
   const cartTotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   const cartCount = cartItems.reduce((count, item) => count + item.quantity, 0);
 

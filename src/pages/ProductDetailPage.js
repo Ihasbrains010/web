@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import productsData from '../data/products'; // Import the product data
 import { useCart } from '../context/CartContext';
+import CountdownTimer from '../components/CountdownTimer'; // Import the CountdownTimer component
 import './ProductDetailPage.css'; // We will create this CSS file next
 
 function ProductDetailPage() {
@@ -49,13 +50,18 @@ function ProductDetailPage() {
     }
   };
 
-  // Format price utility
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(price);
-  };
+  // Prices are already strings like "₹304"
+  const sellingPrice = product?.price;
+  const mrpPrice = product?.mrp_price;
+
+  let discountPercentage = 0;
+  if (mrpPrice && sellingPrice) {
+    const mrp = parseFloat(mrpPrice.replace(/[^\d.-]/g, ''));
+    const selling = parseFloat(sellingPrice.replace(/[^\d.-]/g, ''));
+    if (mrp > selling) {
+      discountPercentage = Math.round(((mrp - selling) / mrp) * 100);
+    }
+  }
 
   if (!product) {
     // Display a loading message or a 'product not found' message
@@ -75,7 +81,19 @@ function ProductDetailPage() {
         </div>
         <div className="product-info">
           <h1 className="product-title">{product.name}</h1>
-          <p className="product-price-detail">{formatPrice(product.price)}</p>
+          {/* Price display updated here */}
+          <div className="product-price-container-detail">
+            <span className="selling-price-detail">{sellingPrice}</span>
+            {mrpPrice && sellingPrice && parseFloat(mrpPrice.replace(/[^\d.-]/g, '')) > parseFloat(sellingPrice.replace(/[^\d.-]/g, '')) && (
+              <span className="mrp-price-detail">{mrpPrice}</span>
+            )}
+            {discountPercentage > 0 && (
+              <span className="discount-percentage-detail">({discountPercentage}% off)</span>
+            )}
+          </div>
+          {/* Display CountdownTimer if offer_ends_at is present */}
+          {product.offer_ends_at && <CountdownTimer targetDate={product.offer_ends_at} />}
+
           <p className="product-description-detail">{product.description}</p>
 
           {/* Size Selector - Conditionally Rendered */}
@@ -122,12 +140,12 @@ function ProductDetailPage() {
           {product.reviews.map((review, index) => (
             <div key={index} className="review-item">
               <div className="review-header">
-                <span className="review-author">{review.author}</span>
-                <span className="review-rating">{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</span>
-                <span className="review-date">{review.date}</span>
-                {review.verifiedPurchase && <span className="review-verified">Verified Purchase</span>}
+                <span className="review-author">{review.user}</span>
+                {review.rating && (
+                  <span className="review-rating">{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</span>
+                )}
               </div>
-              <p className="review-text">{review.text}</p>
+              <p className="review-text">{review.comment}</p>
             </div>
           ))}
         </div>

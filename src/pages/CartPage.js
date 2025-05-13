@@ -19,7 +19,10 @@ function CartPage() {
   };
 
   const formatPrice = (price) => {
-    return `$${price.toFixed(2)}`;
+    // Expects a number, formats to ₹ (e.g., ₹199)
+    // Using toLocaleString for potentially better formatting based on locale, though simple concatenation works for INR.
+    // We don't have decimal prices right now, so no .toFixed(2) is needed.
+    return `₹${Number(price).toLocaleString('en-IN')}`;
   };
 
   return (

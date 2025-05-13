@@ -8,7 +8,7 @@ import './CheckoutPage.css'; // We'll create this next
 
 // --- Configuration (Replace with your actual details!) ---
 const YOUR_UPI_ID = '9996889429@fam'; // <-- Updated UPI ID
-const YOUR_QR_CODE_IMAGE_PATH = '/assets/upi-qr-placeholder.png'; // <-- Updated QR Code Image Path
+const YOUR_QR_CODE_IMAGE_PATH = '/qr_code.png'; // <-- Corrected QR Code Image Path
 const YOUR_EMAIL_ADDRESS = 'your.email@example.com'; // <-- Replace this!
 // --------------------------------------------------------
 
@@ -125,10 +125,10 @@ function CheckoutPage() {
   };
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(price);
+    // Expects a number, formats to ₹ (e.g., ₹199)
+    // Using toLocaleString for potentially better formatting based on locale, though simple concatenation works for INR.
+    // We don't have decimal prices right now, so no .toFixed(2) is needed.
+    return `₹${Number(price).toLocaleString('en-IN')}`;
   };
 
   const generateMailtoBody = () => {
